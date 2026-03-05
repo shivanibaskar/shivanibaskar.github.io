@@ -10,8 +10,8 @@
   --text:        #f0ead8;
   --text-muted:  #9e8f72;
   --text-faint:  #5a4f3a;
-  --purple:      #d97706;
-  --cyan:        #fbbf24;
+  --amber:       #d97706;
+  --gold:        #fbbf24;
   --grad:        linear-gradient(135deg, #d97706, #f59e0b);
   --grad-soft:   linear-gradient(135deg, rgba(217,119,6,0.15), rgba(251,191,36,0.12));
   --radius:      16px;
@@ -59,7 +59,7 @@ strong { font-weight: 600; color: #fff; }
   font-weight: 600;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: var(--purple);
+  color: var(--amber);
   margin-bottom: 14px;
 }
 
@@ -134,7 +134,7 @@ strong { font-weight: 600; color: #fff; }
 }
 .nav-links a.nav-cta:hover {
   background: var(--surface-2);
-  border-color: var(--purple);
+  border-color: var(--amber);
   color: #fff;
 }
 .hamburger { display: none; }
@@ -362,7 +362,7 @@ strong { font-weight: 600; color: #fff; }
   position: absolute;
   left: 0; top: 8px; bottom: 8px;
   width: 1px;
-  background: linear-gradient(180deg, var(--purple), transparent);
+  background: linear-gradient(180deg, var(--amber), transparent);
 }
 
 .tl-item {
@@ -380,10 +380,10 @@ strong { font-weight: 600; color: #fff; }
   width: 14px; height: 14px;
   border-radius: 50%;
   background: var(--bg-alt);
-  border: 2px solid var(--purple);
+  border: 2px solid var(--amber);
   transition: background 0.2s;
 }
-.tl-item:hover .tl-dot { background: var(--purple); }
+.tl-item:hover .tl-dot { background: var(--amber); }
 
 .tl-body {
   background: var(--surface);
@@ -411,7 +411,7 @@ strong { font-weight: 600; color: #fff; }
 }
 .tl-company {
   font-size: 0.9rem;
-  color: var(--purple);
+  color: var(--amber);
   font-weight: 500;
   margin-top: 3px;
 }
@@ -442,7 +442,7 @@ strong { font-weight: 600; color: #fff; }
   content: '—';
   position: absolute;
   left: 0;
-  color: var(--cyan);
+  color: var(--gold);
 }
 
 .tl-badge {
@@ -456,7 +456,7 @@ strong { font-weight: 600; color: #fff; }
 }
 .tl-badge.current {
   background: rgba(251,191,36,0.10);
-  color: var(--cyan);
+  color: var(--gold);
   border: 1px solid rgba(34,211,238,0.25);
 }
 
@@ -479,13 +479,13 @@ strong { font-weight: 600; color: #fff; }
 }
 .edu-card.featured {
   border-color: rgba(217,119,6,0.3);
-  background: linear-gradient(135deg, var(--surface), rgba(139,92,246,0.06));
+  background: linear-gradient(135deg, var(--surface), rgba(217,119,6,0.06));
 }
 .edu-year {
   font-size: 0.78rem;
   font-weight: 600;
   letter-spacing: 0.1em;
-  color: var(--cyan);
+  color: var(--gold);
   text-transform: uppercase;
   margin-bottom: 12px;
 }
@@ -497,7 +497,7 @@ strong { font-weight: 600; color: #fff; }
 }
 .edu-school {
   font-size: 0.92rem;
-  color: var(--purple);
+  color: var(--amber);
   font-weight: 500;
   margin-bottom: 24px;
 }
@@ -530,7 +530,7 @@ strong { font-weight: 600; color: #fff; }
   font-weight: 600;
   padding: 8px 16px;
   border-radius: 50px;
-  background: linear-gradient(135deg, rgba(139,92,246,0.15), rgba(34,211,238,0.15));
+  background: linear-gradient(135deg, rgba(217,119,6,0.15), rgba(251,191,36,0.12));
   border: 1px solid rgba(217,119,6,0.3);
   color: var(--text);
   margin-top: 20px;
@@ -578,7 +578,7 @@ strong { font-weight: 600; color: #fff; }
   cursor: default;
 }
 .skill-pills span:hover {
-  border-color: var(--purple);
+  border-color: var(--amber);
   transform: translateY(-2px);
 }
 
@@ -672,7 +672,7 @@ strong { font-weight: 600; color: #fff; }
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  color: var(--purple);
+  color: var(--amber);
 }
 .contact-icon svg { width: 20px; height: 20px; }
 .contact-label {
