@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Shivani Baskar's reading log — books, articles, tweets, essays." />
+  <title>Reads — Shivani Baskar</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ── Reads page ── */
+    .reads-hero {
+      padding: calc(var(--nav-h) + 80px) 0 20px;
+    }
+    .reads-hero h1 {
+      font-size: clamp(2.4rem, 5vw, 3.6rem);
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+    .reads-hero p {
+      font-size: 1rem;
+      color: var(--text-muted);
+      max-width: 480px;
+    }
+
+    /* Filter tabs */
+    .filter-bar {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      padding: 36px 0 48px;
+    }
+    .filter-btn {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      padding: 6px 18px;
+      border-radius: 50px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .filter-btn:hover { border-color: var(--amber); color: #fff; }
+    .filter-btn.active {
+      background: var(--grad);
+      border-color: transparent;
+      color: #fff;
+    }
+
+    /* Log */
+    .reads-log {
+      padding-bottom: 100px;
+    }
+
+    .log-month {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      padding: 0 0 16px;
+      margin-top: 48px;
+      border-bottom: 1px solid var(--border);
+    }
+    .log-month:first-child { margin-top: 0; }
+
+    .log-entry {
+      display: grid;
+      grid-template-columns: 72px auto 1fr auto;
+      align-items: baseline;
+      gap: 0 20px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--border);
+      transition: background 0.15s;
+    }
+    .log-entry:hover { background: rgba(255,255,255,0.02); }
+
+    .log-date {
+      font-size: 0.78rem;
+      color: var(--text-faint);
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .type-badge {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 50px;
+      white-space: nowrap;
+    }
+    .type-badge.book    { background: rgba(217,119,6,0.15);  color: #fbbf24; border: 1px solid rgba(217,119,6,0.3); }
+    .type-badge.article { background: rgba(99,179,237,0.1);  color: #90cdf4; border: 1px solid rgba(99,179,237,0.2); }
+    .type-badge.tweet   { background: rgba(147,197,253,0.1); color: #93c5fd; border: 1px solid rgba(147,197,253,0.2); }
+    .type-badge.essay   { background: rgba(167,139,250,0.1); color: #c4b5fd; border: 1px solid rgba(167,139,250,0.2); }
+    .type-badge.thread  { background: rgba(110,231,183,0.1); color: #6ee7b7; border: 1px solid rgba(110,231,183,0.2); }
+
+    .log-body { min-width: 0; }
+
+    .log-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #fff;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.2s;
+      line-height: 1.4;
+    }
+    .log-title:hover { color: var(--gold); }
+    .log-title svg {
+      opacity: 0;
+      transition: opacity 0.2s, transform 0.2s;
+      flex-shrink: 0;
+    }
+    .log-title:hover svg {
+      opacity: 1;
+      transform: translate(2px, -2px);
+    }
+
+    .log-note {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+      font-style: italic;
+      line-height: 1.5;
+    }
+
+    .log-author {
+      font-size: 0.82rem;
+      color: var(--amber);
+      font-weight: 500;
+      white-space: nowrap;
+      text-align: right;
+    }
+
+    @media (max-width: 680px) {
+      .log-entry {
+        grid-template-columns: 1fr auto;
+        grid-template-rows: auto auto;
+        gap: 6px 12px;
+      }
+      .log-date { display: none; }
+      .type-badge { grid-column: 1; grid-row: 1; justify-self: start; }
+      .log-body  { grid-column: 1 / -1; grid-row: 2; }
+      .log-author { grid-column: 2; grid-row: 1; align-self: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Navigation ── -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">SB</a>
+      <ul class="nav-links">
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#experience">Experience</a></li>
+        <li><a href="index.html#education">Education</a></li>
+        <li><a href="index.html#skills">Skills</a></li>
+        <li><a href="reads.html" style="color:#fff;">Reads</a></li>
+        <li><a href="https://github.com/shivanibaskar" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+        <li><a href="index.html#contact" class="nav-cta">Contact</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="container">
+
+    <div class="reads-hero reveal">
+      <div class="section-label">Reading log</div>
+      <h1>What I've been <span class="gradient-text">reading</span></h1>
+      <p>Books, articles, tweets, essays — logged as I go.</p>
+    </div>
+
+    <div class="filter-bar">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="book">Books</button>
+      <button class="filter-btn" data-filter="article">Articles</button>
+      <button class="filter-btn" data-filter="essay">Essays</button>
+      <button class="filter-btn" data-filter="tweet">Tweets</button>
+      <button class="filter-btn" data-filter="thread">Threads</button>
+    </div>
+
+    <div class="reads-log" id="reads-log">
+
+      <div class="log-month">March 2026</div>
+
+      <div class="log-entry reveal" data-type="article">
+        <span class="log-date">Mar 4</span>
+        <span class="type-badge article">Article</span>
+        <div class="log-body">
+          <a class="log-title" href="https://tim.blog/2026/03/04/the-self-help-trap/" target="_blank" rel="noopener noreferrer">
+            The Self-Help Trap
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M7 7h10v10"/></svg>
+          </a>
+        </div>
+        <span class="log-author">Tim Ferriss</span>
+      </div>
+
+      <div class="log-month" style="margin-top:48px;">All time</div>
+
+      <div class="log-entry reveal" data-type="book">
+        <span class="log-date"></span>
+        <span class="type-badge book">Book</span>
+        <div class="log-body">
+          <a class="log-title" href="#" data-type="book">
+            Thinking, Fast and Slow
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M7 7h10v10"/></svg>
+          </a>
+          <p class="log-note">Changed how I think about thinking. The System 1 / System 2 distinction is something I come back to constantly.</p>
+        </div>
+        <span class="log-author">Daniel Kahneman</span>
+      </div>
+
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p>Designed &amp; built with care &middot; Shivani Baskar &copy; 2026</p>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const entries = document.querySelectorAll('.log-entry');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+        entries.forEach(entry => {
+          entry.style.display = (filter === 'all' || entry.dataset.type === filter) ? 'grid' : 'none';
+        });
+      });
+    });
+  </script>
+</body>
+</html>
