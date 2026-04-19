@@ -125,6 +125,7 @@ strong { font-weight: 600; color: #fff; }
   transition: color 0.2s;
 }
 .nav-links a:hover { color: #fff; }
+.nav-links a.active { color: #fff; }
 .nav-links a.nav-cta {
   padding: 8px 20px;
   border: 1px solid var(--border);
@@ -582,57 +583,6 @@ strong { font-weight: 600; color: #fff; }
   transform: translateY(-2px);
 }
 
-.subsection-title {
-  font-family: 'Inter', sans-serif;
-  font-size: 0.85rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  margin-bottom: 24px;
-}
-
-.cert-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 14px;
-}
-.cert-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  padding: 20px 20px;
-  transition: border-color 0.25s, transform 0.25s;
-}
-.cert-card:hover {
-  border-color: rgba(217,119,6,0.35);
-  transform: translateY(-3px);
-}
-.cert-card p {
-  font-size: 0.84rem;
-  color: var(--text-muted);
-  margin-top: 8px;
-  line-height: 1.4;
-}
-.cert-provider {
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  padding: 3px 10px;
-  border-radius: 50px;
-}
-.cert-provider.coursera {
-  background: rgba(217,119,6,0.15);
-  color: #fbbf24;
-  border: 1px solid rgba(217,119,6,0.25);
-}
-.cert-provider.nptel {
-  background: rgba(239,68,68,0.1);
-  color: #f87171;
-  border: 1px solid rgba(239,68,68,0.2);
-}
-
 /* ── Contact ── */
 .contact-container { text-align: center; }
 .contact-sub {
@@ -720,7 +670,6 @@ strong { font-weight: 600; color: #fff; }
   .about-grid { grid-template-columns: 1fr; gap: 40px; }
   .edu-grid   { grid-template-columns: 1fr; }
   .skills-grid { grid-template-columns: 1fr; }
-  .cert-grid  { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 680px) {
@@ -728,7 +677,6 @@ strong { font-weight: 600; color: #fff; }
   .hamburger { display: flex; }
   .hero-name { font-size: clamp(3rem, 14vw, 5rem); }
   .about-stats { grid-template-columns: 1fr 1fr; }
-  .cert-grid { grid-template-columns: 1fr; }
   .tl-body { padding: 20px; }
   .section { padding: 80px 0; }
   .contact-card { min-width: unset; width: 100%; }
