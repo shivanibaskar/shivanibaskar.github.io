@@ -548,6 +548,7 @@ strong { font-weight: 600; color: #fff; }
   transition: color 0.2s;
 }
 .proj-link:hover { color: var(--gold); }
+.proj-tags { margin-bottom: 20px; }
 
 /* ── Skills ── */
 .skills-grid {

@@ -70,7 +70,7 @@ function updateNYCTime() {
       hour12: false,
     }).format(new Date()),
     10
-  );
+  ) || 0;
 
   const dotColor =
     nyHour >= 9 && nyHour < 18   ? '#22c55e'   // work hours — green
