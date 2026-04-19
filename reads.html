@@ -235,19 +235,36 @@
 
   <script src="script.js"></script>
   <script>
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    const entries = document.querySelectorAll('.log-entry');
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const entries    = document.querySelectorAll('.log-entry');
+  const months     = document.querySelectorAll('.log-month');
 
-    filterBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        filterBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        const filter = btn.dataset.filter;
-        entries.forEach(entry => {
-          entry.style.display = (filter === 'all' || entry.dataset.type === filter) ? 'grid' : 'none';
-        });
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+
+      entries.forEach(entry => {
+        entry.style.display =
+          (filter === 'all' || entry.dataset.type === filter) ? 'grid' : 'none';
+      });
+
+      // Hide month headers that have no visible entries beneath them
+      months.forEach(header => {
+        let sibling = header.nextElementSibling;
+        let hasVisible = false;
+        while (sibling && !sibling.classList.contains('log-month')) {
+          if (sibling.classList.contains('log-entry') && sibling.style.display !== 'none') {
+            hasVisible = true;
+            break;
+          }
+          sibling = sibling.nextElementSibling;
+        }
+        header.style.display = hasVisible ? '' : 'none';
       });
     });
-  </script>
+  });
+</script>
 </body>
 </html>
