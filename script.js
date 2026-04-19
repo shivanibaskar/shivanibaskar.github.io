@@ -50,3 +50,42 @@ const sectionObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.4 });
 
 sections.forEach(s => sectionObserver.observe(s));
+
+// ── NYC time + status dot ──
+function updateNYCTime() {
+  const el = document.getElementById('footer-time');
+  if (!el) return;
+
+  const nyTimeStr = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'America/New_York',
+    hour: 'numeric',
+    minute: '2-digit',
+    hour12: true,
+  }).format(new Date());
+
+  const nyHour = parseInt(
+    new Intl.DateTimeFormat('en-US', {
+      timeZone: 'America/New_York',
+      hour: 'numeric',
+      hour12: false,
+    }).format(new Date()),
+    10
+  );
+
+  const dotColor =
+    nyHour >= 9 && nyHour < 18   ? '#22c55e'   // work hours — green
+    : nyHour >= 18 && nyHour < 23 ? '#f59e0b'  // evening — amber
+    :                               '#5a4f3a';  // night — dim
+
+  const dotGlow =
+    nyHour >= 9 && nyHour < 18   ? '0 0 6px rgba(34,197,94,0.6)'
+    : nyHour >= 18 && nyHour < 23 ? '0 0 6px rgba(245,158,11,0.5)'
+    :                               'none';
+
+  el.innerHTML =
+    `<span class="time-dot" style="background:${dotColor};box-shadow:${dotGlow};"></span>` +
+    `NYC · ${nyTimeStr}`;
+}
+
+updateNYCTime();
+setInterval(updateNYCTime, 60_000);
