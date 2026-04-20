@@ -89,3 +89,23 @@ function updateNYCTime() {
 
 updateNYCTime();
 setInterval(updateNYCTime, 60_000);
+
+// ── Spotify now playing ──
+async function loadSpotify() {
+  try {
+    const res = await fetch('https://personalwebsite-phi-plum.vercel.app/api/now-playing');
+    if (!res.ok) return;
+    const data = await res.json();
+    if (!data.title) return;
+
+    document.getElementById('spotify-label').textContent =
+      data.isPlaying ? 'Now playing' : 'Last played';
+    document.getElementById('spotify-track').textContent =
+      `${data.title} — ${data.artist}`;
+    document.getElementById('spotify-bar').style.display = 'flex';
+  } catch {
+    // Fail silently — bar stays hidden
+  }
+}
+
+loadSpotify();
