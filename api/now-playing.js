@@ -20,12 +20,8 @@ const getAccessToken = async () => {
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Cache-Control', 'no-store');
-  const debug = req.query?.debug === '1';
-
   try {
-    const tokenRes = await getAccessToken();
-    const { access_token } = tokenRes;
-    if (debug && !access_token) return res.json({ tokenError: tokenRes });
+    const { access_token } = await getAccessToken();
 
     const nowRes = await fetch(
       'https://api.spotify.com/v1/me/player/currently-playing',
@@ -35,7 +31,6 @@ export default async function handler(req, res) {
     // 204 = nothing playing; fall through to recently played
     if (nowRes.status !== 204 && nowRes.status < 400) {
       const data = await nowRes.json();
-      if (debug) return res.json({ nowStatus: nowRes.status, data });
       if (data?.item) {
         const isEpisode = data.currently_playing_type === 'episode';
         return res.json({
@@ -44,8 +39,7 @@ export default async function handler(req, res) {
           artist: isEpisode ? data.item.show?.name : data.item.artists?.[0]?.name,
         });
       }
-    } else if (debug) {
-      return res.json({ nowStatus: nowRes.status });
+      // item is null (restricted episode) — fall through to recently played music
     }
 
     // Fallback: last played track
