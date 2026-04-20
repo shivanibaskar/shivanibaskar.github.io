@@ -23,8 +23,9 @@ export default async function handler(req, res) {
   const debug = req.query?.debug === '1';
 
   try {
-    const { access_token } = await getAccessToken();
-    if (debug && !access_token) return res.json({ error: 'no_access_token' });
+    const tokenRes = await getAccessToken();
+    const { access_token } = tokenRes;
+    if (debug && !access_token) return res.json({ tokenError: tokenRes });
 
     const nowRes = await fetch(
       'https://api.spotify.com/v1/me/player/currently-playing',
