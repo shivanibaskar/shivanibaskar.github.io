@@ -33,10 +33,11 @@ export default async function handler(req, res) {
     if (nowRes.status !== 204 && nowRes.status < 400) {
       const data = await nowRes.json();
       if (data?.item) {
+        const isEpisode = data.currently_playing_type === 'episode';
         return res.json({
           isPlaying: data.is_playing,
           title: data.item.name,
-          artist: data.item.artists[0].name,
+          artist: isEpisode ? data.item.show?.name : data.item.artists?.[0]?.name,
         });
       }
     }
